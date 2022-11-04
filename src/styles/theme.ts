@@ -21,14 +21,26 @@ export default extendTheme({
       500: "#1976D2",
     },
   },
+  fontConfig: {
+    Inter: {
+      400: {
+        normal: "Inter_400Regular",
+      },
+      700: {
+        normal: "Inter_700Bold",
+      },
+    },
+    Roboto: {
+      400: {
+        normal: "Roboto_400Regular",
+      },
+      500: {
+        normal: "Roboto_500Medium",
+      },
+    },
+  },
   fonts: {
-    primary: {
-      400: "Inter_400Regular",
-      700: "Inter_700Bold",
-    },
-    secondary: {
-      400: "Roboto_400Regular",
-      500: "Roboto_500Medium",
-    },
+    heading: "Inter",
+    body: "Roboto",
   },
 });

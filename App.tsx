@@ -8,6 +8,9 @@ import {
 } from "@expo-google-fonts/inter";
 import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto";
 
+import theme from "./src/styles/theme";
+import { Repositories } from "./src/screens/Repositories";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -20,8 +23,8 @@ export default function App() {
     return <Text>Carregando ...</Text>;
   }
   return (
-    <NativeBaseProvider>
-      <Text></Text>
+    <NativeBaseProvider theme={theme}>
+      <Repositories />
     </NativeBaseProvider>
   );
 }

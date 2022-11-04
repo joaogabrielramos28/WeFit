@@ -9,7 +9,7 @@ import {
 import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto";
 
 import theme from "./src/styles/theme";
-import { Repositories } from "./src/screens/Repositories";
+import { Routes } from "./src/routes/index.routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,7 +24,7 @@ export default function App() {
   }
   return (
     <NativeBaseProvider theme={theme}>
-      <Repositories />
+      <Routes />
     </NativeBaseProvider>
   );
 }

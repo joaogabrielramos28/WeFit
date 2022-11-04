@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.2",
+    "@expo-google-fonts/roboto": "^0.2.2",
     "expo": "~46.0.16",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",

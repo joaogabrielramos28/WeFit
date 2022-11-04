@@ -65,7 +65,7 @@ export const Card = () => {
             Favoritar
           </Button>
 
-          <HStack alignItems={"center"}>
+          <HStack alignItems={"center"} space={"8px"}>
             <Icon as={Entypo} name="star" size={18} color={"yellow.500"} />
             <Text
               fontFamily={"heading"}

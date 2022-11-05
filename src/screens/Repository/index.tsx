@@ -4,7 +4,6 @@ import {
   Heading,
   HStack,
   Icon,
-  IconButton,
   Link,
   Text,
   VStack,
@@ -12,15 +11,50 @@ import {
 import React from "react";
 import { Header } from "./components/Header";
 import { Entypo, Octicons, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import { useRoute } from "@react-navigation/native";
 import { RepositoryNavigateParams } from "../../@types/navigation";
+import { useRepositories } from "../../context/repositoriesContext";
 
 export const Repository = () => {
+  const { favoritesRepos, removeRepoFromFavorite, addRepoToFavorite } =
+    useRepositories();
   const { params } = useRoute();
+  const { navigate } = useNavigation();
 
-  const { full_name, description, html_url, language } =
-    params as RepositoryNavigateParams;
+  const {
+    full_name,
+    description,
+    html_url,
+    language,
+    id,
+    owner,
+    stargazers_count,
+  } = params as RepositoryNavigateParams;
+
+  const repo = {
+    full_name,
+    description,
+    html_url,
+    language,
+    id,
+    owner,
+    stargazers_count,
+  };
+  const isFavorite = favoritesRepos.some(
+    (item) => item.full_name === full_name
+  );
+
+  const handleRemoveRepoFromFavorites = () => {
+    removeRepoFromFavorite(repo);
+    navigate("FavoritesRepositories");
+  };
+
+  const handleAddRepoToFavorites = () => {
+    addRepoToFavorite(repo);
+    navigate("FavoritesRepositories");
+  };
 
   return (
     <Box flex={1} bg={"gray.400"}>
@@ -89,26 +123,53 @@ export const Repository = () => {
               color={"blue.500"}
             />
           </Link>
-          <Button
-            bg={"yellow.500"}
-            endIcon={
-              <Icon
-                as={Entypo}
-                name={"star"}
-                size={"24px"}
-                color={"gray.900"}
-              />
-            }
-            _text={{
-              color: "gray.900",
-              textTransform: "uppercase",
-              fontFamily: "body",
-              fontWeight: 500,
-              fontSize: "14px",
-            }}
-          >
-            favoritar
-          </Button>
+          {isFavorite ? (
+            <Button
+              onPress={handleRemoveRepoFromFavorites}
+              variant={"outline"}
+              borderWidth={"2px"}
+              borderColor={"gray.900"}
+              endIcon={
+                <Icon
+                  as={Entypo}
+                  name={"star-outlined"}
+                  size={"24px"}
+                  color={"gray.900"}
+                />
+              }
+              _text={{
+                color: "gray.900",
+                textTransform: "uppercase",
+                fontFamily: "body",
+                fontWeight: 500,
+                fontSize: "14px",
+              }}
+            >
+              desfavoritar
+            </Button>
+          ) : (
+            <Button
+              onPress={handleAddRepoToFavorites}
+              bg={"yellow.500"}
+              endIcon={
+                <Icon
+                  as={Entypo}
+                  name={"star"}
+                  size={"24px"}
+                  color={"gray.900"}
+                />
+              }
+              _text={{
+                color: "gray.900",
+                textTransform: "uppercase",
+                fontFamily: "body",
+                fontWeight: 500,
+                fontSize: "14px",
+              }}
+            >
+              favoritar
+            </Button>
+          )}
         </VStack>
       </VStack>
     </Box>

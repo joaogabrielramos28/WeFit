@@ -20,21 +20,23 @@ export const TabsRoutes = () => {
       }}
     >
       <Screen
-        name="Repositórios"
+        name="Repositories"
         component={StackRoutes}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="logo-github" size={20} color={color} />
           ),
+          tabBarLabel: "Repositórios",
         }}
       />
       <Screen
-        name="Favoritos"
+        name="FavoritesRepositories"
         component={FavoritesRepositories}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="star" size={20} color={color} />
           ),
+          tabBarLabel: "Favoritos",
         }}
       />
     </Navigator>

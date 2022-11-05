@@ -41,10 +41,11 @@ export const Card = ({
 
   const handleAddRepoToFavorite = () => {
     addRepoToFavorite(repo);
+    navigate("FavoritesRepositories");
   };
 
   const handleGoToRepoDetailsScreen = () => {
-    navigate("Repository", { full_name, description, html_url, language });
+    navigate("Repository", { ...repo });
   };
 
   return (

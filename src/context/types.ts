@@ -10,4 +10,5 @@ export interface IRepositoriesContextProps {
   userName: string;
   isShowingAlert: boolean;
   addRepoToFavorite: (repo: IRepos) => Promise<void>;
+  removeRepoFromFavorite: (repo: IRepos) => Promise<void>;
 }

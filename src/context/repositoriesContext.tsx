@@ -43,6 +43,16 @@ const RepositoriesProvider = ({ children }: { children: ReactNode }) => {
     setFavoritesRepos((prevState) => [...prevState, repo]);
   };
 
+  const removeRepoFromFavorite = async (repo: IRepos) => {
+    const data = await AsyncStorage.getItem(FAVORITES_STORAGE_KEY);
+    const currentData = data ? JSON.parse(data) : [];
+    const newData = currentData.filter(
+      (storageRepo) => storageRepo.id !== repo.id
+    );
+    await AsyncStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(newData));
+    setFavoritesRepos(newData);
+  };
+
   useEffect(() => {
     const LoadFavoritesRepos = async () => {
       const response = await AsyncStorage.getItem(FAVORITES_STORAGE_KEY);
@@ -69,7 +79,7 @@ const RepositoriesProvider = ({ children }: { children: ReactNode }) => {
           setIsShowingAlert(false);
         }, 2000);
       });
-  }, [userName]);
+  }, [userName, favoritesRepos]);
 
   return (
     <RepositoriesContext.Provider
@@ -83,6 +93,7 @@ const RepositoriesProvider = ({ children }: { children: ReactNode }) => {
         isShowingAlert,
         addRepoToFavorite,
         favoritesRepos,
+        removeRepoFromFavorite,
       }}
     >
       {children}

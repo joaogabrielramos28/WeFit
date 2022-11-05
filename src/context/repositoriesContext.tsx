@@ -9,6 +9,7 @@ import { IRepos } from "../Dtos/repos";
 import { api } from "../services/api";
 import { IRepositoriesContextProps } from "./types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 const RepositoriesContext = createContext({} as IRepositoriesContextProps);
 
@@ -20,6 +21,9 @@ const RepositoriesProvider = ({ children }: { children: ReactNode }) => {
   const [userName, setUserName] = useState("appswefit");
   const [isShowingAlert, setIsShowingAlert] = useState(false);
   const [actionSheetIsOpen, setActionSheetIsOpen] = useState(false);
+
+  const netInfo = useNetInfo();
+  const isConnectToInternet = netInfo.isConnected;
 
   const closeActionSheet = () => {
     setActionSheetIsOpen(false);
@@ -98,6 +102,7 @@ const RepositoriesProvider = ({ children }: { children: ReactNode }) => {
         addRepoToFavorite,
         favoritesRepos,
         removeRepoFromFavorite,
+        isConnectToInternet,
       }}
     >
       {children}

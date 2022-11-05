@@ -11,4 +11,5 @@ export interface IRepositoriesContextProps {
   isShowingAlert: boolean;
   addRepoToFavorite: (repo: IRepos) => Promise<void>;
   removeRepoFromFavorite: (repo: IRepos) => Promise<void>;
+  isConnectToInternet: boolean;
 }

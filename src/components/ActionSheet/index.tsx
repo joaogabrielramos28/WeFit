@@ -9,12 +9,16 @@ import {
   VStack,
 } from "native-base";
 import React, { useEffect, useState } from "react";
-
-import { useRepositories } from "../../../../context/repositoriesContext";
+import { useRepositories } from "../../context/repositoriesContext";
 
 export const ActionSheet = () => {
-  const { handleEditUserName, actionSheetIsOpen, closeActionSheet, userName } =
-    useRepositories();
+  const {
+    handleEditUserName,
+    actionSheetIsOpen,
+    closeActionSheet,
+    userName,
+    isConnectToInternet,
+  } = useRepositories();
 
   const [draftUserName, setDraftUserName] = useState(userName);
 
@@ -29,6 +33,14 @@ export const ActionSheet = () => {
   const handleSaveNewUserName = () => {
     handleEditUserName(draftUserName);
     closeActionSheet();
+  };
+
+  const shouldBeDisabledButton = () => {
+    if (draftUserName === "" || !isConnectToInternet) {
+      return true;
+    }
+
+    return false;
   };
 
   return (
@@ -74,7 +86,7 @@ export const ActionSheet = () => {
                   Cancelar
                 </Button>
                 <Button
-                  isDisabled={draftUserName === ""}
+                  isDisabled={shouldBeDisabledButton()}
                   onPress={handleSaveNewUserName}
                   _text={{
                     fontFamily: "body",

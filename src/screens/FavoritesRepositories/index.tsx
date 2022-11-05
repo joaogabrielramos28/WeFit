@@ -1,16 +1,21 @@
 import { Box, FlatList, Heading } from "native-base";
 import React from "react";
-import { Alert, Card, Header } from "../../components";
+import { ActionSheet, Alert, Card, Header } from "../../components";
 import { useRepositories } from "../../context/repositoriesContext";
-
-import { ActionSheet } from "./components/ActionSheet";
 
 export const FavoritesRepositories = () => {
   const { favoritesRepos, isShowingAlert } = useRepositories();
   return (
     <Box flex={1} bg={"gray.400"}>
       <Header />
-      {isShowingAlert ? <Alert /> : null}
+      {isShowingAlert ? (
+        <Alert
+          status={"error"}
+          bg={"red.500"}
+          message={" Nome de usuário inválido"}
+          color={"yellow.500"}
+        />
+      ) : null}
       <Box paddingX={"16px"}>
         {favoritesRepos.length > 0 ? (
           <FlatList

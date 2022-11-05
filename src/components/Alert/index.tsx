@@ -7,15 +7,16 @@ import {
   Text,
   VStack,
 } from "native-base";
-export const Alert = () => {
+import { IAlertProps } from "./types";
+export const Alert = ({ status, message, bg, color }: IAlertProps) => {
   return (
-    <AlertNativeBase w="100%" status={"error"} bg={"red.500"}>
+    <AlertNativeBase w="100%" status={status} bg={bg}>
       <VStack space={2} flexShrink={1} w="100%">
         <HStack flexShrink={1} space={2} justifyContent="space-between">
           <HStack space={2} flexShrink={1}>
-            <AlertNativeBase.Icon mt="1" color={"yellow.500"} />
+            <AlertNativeBase.Icon mt="1" color={color} />
             <Text fontSize="md" color="gray.400">
-              Nome de usuário inválido
+              {message}
             </Text>
           </HStack>
         </HStack>

@@ -3,7 +3,7 @@ import { useTheme } from "native-base";
 import React from "react";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
-import { Repositories } from "../screens";
+import { FavoritesRepositories, Repositories } from "../screens";
 import { StackRoutes } from "./stack.routes";
 
 const { Screen, Navigator } = createBottomTabNavigator();
@@ -30,7 +30,7 @@ export const TabsRoutes = () => {
       />
       <Screen
         name="Favoritos"
-        component={Repositories}
+        component={FavoritesRepositories}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="star" size={20} color={color} />

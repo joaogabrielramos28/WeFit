@@ -15,6 +15,7 @@ import { Entypo, Octicons } from "@expo/vector-icons";
 import { IRepos } from "../../Dtos/repos";
 
 import { useNavigation } from "@react-navigation/native";
+import { useRepositories } from "../../context/repositoriesContext";
 
 export const Card = ({
   full_name,
@@ -25,7 +26,22 @@ export const Card = ({
   owner,
   stargazers_count,
 }: IRepos) => {
+  const { addRepoToFavorite } = useRepositories();
   const { navigate } = useNavigation();
+
+  const repo = {
+    full_name,
+    description,
+    html_url,
+    id,
+    language,
+    owner,
+    stargazers_count,
+  };
+
+  const handleAddRepoToFavorite = () => {
+    addRepoToFavorite(repo);
+  };
 
   const handleGoToRepoDetailsScreen = () => {
     navigate("Repository", { full_name, description, html_url, language });
@@ -70,6 +86,7 @@ export const Card = ({
 
         <HStack justifyContent={"space-between"}>
           <Button
+            onPress={handleAddRepoToFavorite}
             bg={"yellow.300"}
             _text={{
               color: "yellow.500",

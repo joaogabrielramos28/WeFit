@@ -26,7 +26,8 @@ export const Card = ({
   owner,
   stargazers_count,
 }: IRepos) => {
-  const { addRepoToFavorite } = useRepositories();
+  const { addRepoToFavorite, favoritesRepos, removeRepoFromFavorite } =
+    useRepositories();
   const { navigate } = useNavigation();
 
   const repo = {
@@ -39,8 +40,17 @@ export const Card = ({
     stargazers_count,
   };
 
+  const isFavorite =
+    favoritesRepos.length > 0
+      ? favoritesRepos.some((item) => item.full_name === full_name)
+      : false;
+
   const handleAddRepoToFavorite = () => {
     addRepoToFavorite(repo);
+    navigate("FavoritesRepositories");
+  };
+  const handleRemoveRepoFromFavorite = () => {
+    removeRepoFromFavorite(repo);
     navigate("FavoritesRepositories");
   };
 
@@ -86,21 +96,44 @@ export const Card = ({
         </Text>
 
         <HStack justifyContent={"space-between"}>
-          <Button
-            onPress={handleAddRepoToFavorite}
-            bg={"yellow.300"}
-            _text={{
-              color: "yellow.500",
-              fontFamily: "heading",
-              fontWeight: "700",
-            }}
-            padding={"10px"}
-            startIcon={
-              <Icon as={Entypo} name="star" size={18} color={"yellow.500"} />
-            }
-          >
-            Favoritar
-          </Button>
+          {isFavorite ? (
+            <Button
+              onPress={handleRemoveRepoFromFavorite}
+              bg={"yellow.300"}
+              _text={{
+                color: "yellow.500",
+                fontFamily: "heading",
+                fontWeight: "700",
+              }}
+              padding={"10px"}
+              startIcon={
+                <Icon
+                  as={Entypo}
+                  name="star-outlined"
+                  size={18}
+                  color={"yellow.500"}
+                />
+              }
+            >
+              Desfavoritar
+            </Button>
+          ) : (
+            <Button
+              onPress={handleAddRepoToFavorite}
+              bg={"yellow.300"}
+              _text={{
+                color: "yellow.500",
+                fontFamily: "heading",
+                fontWeight: "700",
+              }}
+              padding={"10px"}
+              startIcon={
+                <Icon as={Entypo} name="star" size={18} color={"yellow.500"} />
+              }
+            >
+              Favoritar
+            </Button>
+          )}
 
           <HStack alignItems={"center"} space={"8px"}>
             <Icon as={Entypo} name="star" size={18} color={"yellow.500"} />

@@ -1,7 +1,10 @@
 import { Heading, HStack, IconButton } from "native-base";
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import { useRepositories } from "../../context/repositoriesContext";
+
 export const Header = () => {
+  const { openActionSheet } = useRepositories();
   return (
     <HStack
       w={"100%"}
@@ -19,6 +22,7 @@ export const Header = () => {
         WeFit
       </Heading>
       <IconButton
+        onPress={openActionSheet}
         size={"xs"}
         icon={<FontAwesome name="gear" size={20} color={"gray.900"} />}
       />

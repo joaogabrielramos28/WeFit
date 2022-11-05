@@ -53,7 +53,7 @@ export const Card = ({
         >
           {full_name}
         </Text>
-        <Avatar source={{ uri: owner.avatar_url }}></Avatar>
+        <Avatar size={"sm"} source={{ uri: owner.avatar_url }}></Avatar>
       </HStack>
 
       <Divider height={"2px"} bg={"gray.300"} />

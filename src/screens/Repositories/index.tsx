@@ -1,15 +1,17 @@
 import { Box, FlatList } from "native-base";
 import React from "react";
-import { Card, Header } from "../../components";
+import { Alert, Card, Header } from "../../components";
 import { useRepositories } from "../../context/repositoriesContext";
 
 import { ActionSheet } from "./components/ActionSheet";
 
 export const Repositories = () => {
-  const { handleOpenActionSheet, repos } = useRepositories();
+  const { repos, isShowingAlert } = useRepositories();
   return (
     <Box flex={1} bg={"gray.400"}>
-      <Header handleOpen={handleOpenActionSheet} />
+      <Header />
+      {isShowingAlert ? <Alert /> : null}
+
       <Box paddingX={"16px"}>
         <FlatList
           contentContainerStyle={{
@@ -20,6 +22,7 @@ export const Repositories = () => {
           showsVerticalScrollIndicator={false}
         />
       </Box>
+
       <ActionSheet />
     </Box>
   );

@@ -8,8 +8,8 @@ import {
   Text,
   VStack,
 } from "native-base";
-import React, { useState } from "react";
-import { Platform } from "react-native";
+import React, { useEffect, useState } from "react";
+
 import { useRepositories } from "../../../../context/repositoriesContext";
 
 export const ActionSheet = () => {
@@ -17,12 +17,14 @@ export const ActionSheet = () => {
     useRepositories();
 
   const [draftUserName, setDraftUserName] = useState(userName);
-  ("");
 
   const handleCloseActionSheet = () => {
-    setDraftUserName(userName);
     closeActionSheet();
   };
+
+  useEffect(() => {
+    setDraftUserName(userName);
+  }, [actionSheetIsOpen]);
 
   const handleSaveNewUserName = () => {
     handleEditUserName(draftUserName);
@@ -72,6 +74,7 @@ export const ActionSheet = () => {
                   Cancelar
                 </Button>
                 <Button
+                  isDisabled={draftUserName === ""}
                   onPress={handleSaveNewUserName}
                   _text={{
                     fontFamily: "body",

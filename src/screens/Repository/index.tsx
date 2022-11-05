@@ -13,7 +13,7 @@ import React from "react";
 import { Header } from "./components/Header";
 import { Entypo, Octicons, Ionicons } from "@expo/vector-icons";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { RepositoryNavigateParams } from "../../@types/navigation";
 
 export const Repository = () => {

@@ -7,4 +7,5 @@ export interface IRepositoriesContextProps {
   openActionSheet: () => void;
   handleEditUserName: (value: string) => void;
   userName: string;
+  isShowingAlert: boolean;
 }

@@ -1,7 +1,13 @@
 import { Heading, HStack, Icon, IconButton } from "native-base";
 import React from "react";
-import { Ionicons, Octicons, Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
 export const Header = () => {
+  const { goBack } = useNavigation();
+  const handleBackToHome = () => {
+    goBack();
+  };
   return (
     <HStack
       space={"8px"}
@@ -13,6 +19,7 @@ export const Header = () => {
       paddingX={"16px"}
     >
       <IconButton
+        onPress={handleBackToHome}
         size={"xs"}
         icon={
           <Icon as={Ionicons} name={"arrow-back"} size={6} color={"white"} />

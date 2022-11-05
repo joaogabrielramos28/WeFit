@@ -7,14 +7,33 @@ import {
   Heading,
   HStack,
   Icon,
+  Pressable,
   Text,
   VStack,
 } from "native-base";
 import { Entypo, Octicons } from "@expo/vector-icons";
+import { IRepos } from "../../Dtos/repos";
 
-export const Card = () => {
+import { useNavigation } from "@react-navigation/native";
+
+export const Card = ({
+  full_name,
+  description,
+  html_url,
+  id,
+  language,
+  owner,
+  stargazers_count,
+}: IRepos) => {
+  const { navigate } = useNavigation();
+
+  const handleGoToRepoDetailsScreen = () => {
+    navigate("Repository", { full_name, description, html_url, language });
+  };
+
   return (
-    <Box
+    <Pressable
+      onPress={handleGoToRepoDetailsScreen}
       bg={"white"}
       borderRadius={"4px"}
       padding={"12px 16px"}
@@ -32,9 +51,9 @@ export const Card = () => {
           fontWeight={"700"}
           color={"gray.700"}
         >
-          appswefit/create-react-app
+          {full_name}
         </Text>
-        <Avatar>Nome</Avatar>
+        <Avatar source={{ uri: owner.avatar_url }}></Avatar>
       </HStack>
 
       <Divider height={"2px"} bg={"gray.300"} />
@@ -46,7 +65,7 @@ export const Card = () => {
           color={"gray.500"}
           fontSize={"12px"}
         >
-          Yarn Workspaces Monorepo support for Create-React-App / React-Scripts.
+          {description}
         </Text>
 
         <HStack justifyContent={"space-between"}>
@@ -73,7 +92,7 @@ export const Card = () => {
               fontSize={"12px"}
               color={"gray.500"}
             >
-              9
+              {stargazers_count}
             </Text>
           </HStack>
           <HStack alignItems={"center"}>
@@ -84,11 +103,11 @@ export const Card = () => {
               fontSize={"12px"}
               color={"gray.500"}
             >
-              Typescript
+              {language}
             </Text>
           </HStack>
         </HStack>
       </VStack>
-    </Box>
+    </Pressable>
   );
 };

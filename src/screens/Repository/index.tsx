@@ -5,13 +5,23 @@ import {
   HStack,
   Icon,
   IconButton,
+  Link,
   Text,
   VStack,
 } from "native-base";
 import React from "react";
 import { Header } from "./components/Header";
 import { Entypo, Octicons, Ionicons } from "@expo/vector-icons";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { RepositoryNavigateParams } from "../../@types/navigation";
+
 export const Repository = () => {
+  const { params } = useRoute();
+
+  const { full_name, description, html_url, language } =
+    params as RepositoryNavigateParams;
+
   return (
     <Box flex={1} bg={"gray.400"}>
       <Header />
@@ -19,7 +29,7 @@ export const Repository = () => {
       <VStack flex={1} justifyContent={"space-between"}>
         <VStack bg={"white"} padding={"16px"} space={"16px"}>
           <Heading fontFamily={"heading"} fontWeight={"700"} fontSize={"20px"}>
-            appswefit/create-react-app
+            {full_name}
           </Heading>
           <Text
             fontFamily={"heading"}
@@ -27,8 +37,7 @@ export const Repository = () => {
             fontSize={"16px"}
             color={"gray.500"}
           >
-            Yarn Workspaces Monorepo support for Create-React-App /
-            React-Scripts.
+            {description}
           </Text>
           <Text
             fontFamily={"heading"}
@@ -53,32 +62,33 @@ export const Repository = () => {
               fontSize={"12px"}
               color={"gray.500"}
             >
-              Typescript
+              {language}
             </Text>
           </HStack>
         </VStack>
 
         <VStack padding={"16px"} space={"8px"} bg={"white"}>
-          <Button
-            variant={"ghost"}
-            endIcon={
-              <Icon
-                as={Ionicons}
-                name={"link-outline"}
-                size={"24px"}
-                color={"blue.500"}
-              />
-            }
+          <Link
+            justifyContent={"center"}
+            alignItems={"center"}
+            href={html_url}
             _text={{
               color: "blue.500",
               textTransform: "uppercase",
               fontFamily: "body",
               fontWeight: 500,
               fontSize: "14px",
+              textDecoration: "none",
             }}
           >
-            Ver repositório
-          </Button>
+            Ver repositório{" "}
+            <Icon
+              as={Ionicons}
+              name={"link-outline"}
+              size={"24px"}
+              color={"blue.500"}
+            />
+          </Link>
           <Button
             bg={"yellow.500"}
             endIcon={

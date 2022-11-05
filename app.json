@@ -3,8 +3,11 @@
     "name": "WeFit",
     "slug": "WeFit",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F6F6F5"
+    }
   }
 }

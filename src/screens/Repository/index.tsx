@@ -58,15 +58,31 @@ export const Repository = () => {
     navigate("FavoritesRepositories");
   };
 
+  const [userName, repoName] = full_name.split("/");
+
   return (
     <Box flex={1} bg={"gray.400"}>
       <Header />
 
       <VStack flex={1} justifyContent={"space-between"}>
         <VStack bg={"white"} padding={"16px"} space={"16px"}>
-          <Heading fontFamily={"heading"} fontWeight={"700"} fontSize={"20px"}>
-            {full_name}
-          </Heading>
+          <HStack>
+            <Heading
+              fontFamily={"heading"}
+              fontWeight={"400"}
+              fontSize={"20px"}
+            >
+              {userName}/
+            </Heading>
+            <Heading
+              fontFamily={"heading"}
+              fontWeight={"700"}
+              fontSize={"20px"}
+            >
+              {repoName}
+            </Heading>
+          </HStack>
+
           <Text
             fontFamily={"heading"}
             fontWeight={"400"}

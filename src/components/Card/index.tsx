@@ -58,6 +58,8 @@ export const Card = ({
     navigate("Repository", { ...repo });
   };
 
+  const [userName, repoName] = full_name.split("/");
+
   return (
     <Pressable
       onPress={handleGoToRepoDetailsScreen}
@@ -72,14 +74,25 @@ export const Card = ({
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Text
-          fontSize={"14px"}
-          fontFamily={"heading"}
-          fontWeight={"700"}
-          color={"gray.700"}
-        >
-          {full_name}
-        </Text>
+        <HStack>
+          <Text
+            fontSize={"14px"}
+            fontFamily={"heading"}
+            fontWeight={"400"}
+            color={"gray.700"}
+          >
+            {userName}/
+          </Text>
+          <Text
+            fontSize={"14px"}
+            fontFamily={"heading"}
+            fontWeight={"700"}
+            color={"gray.700"}
+          >
+            {repoName}
+          </Text>
+        </HStack>
+
         <Avatar size={"sm"} source={{ uri: owner.avatar_url }}></Avatar>
       </HStack>
 

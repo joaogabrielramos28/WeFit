@@ -3,7 +3,7 @@ import { useTheme } from "native-base";
 import React from "react";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
-import { FavoritesRepositories, Repositories } from "../screens";
+import { FavoritesRepositories } from "../screens";
 import { StackRoutes } from "./stack.routes";
 
 const { Screen, Navigator } = createBottomTabNavigator();

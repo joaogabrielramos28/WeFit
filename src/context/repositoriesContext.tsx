@@ -67,10 +67,14 @@ const RepositoriesProvider = ({ children }: { children: ReactNode }) => {
     api
       .get<IRepos[]>(`${userName}/repos`)
       .then((response) => {
-        const reposWithoutFavorites = response.data.filter(
-          (repo) => !favoritesRepos.some((favRepo) => favRepo.id === repo.id)
-        );
-        setRepos(reposWithoutFavorites);
+        if (favoritesRepos.length > 0) {
+          const reposWithoutFavorites = response.data.filter(
+            (repo) => !favoritesRepos.some((favRepo) => favRepo.id === repo.id)
+          );
+          return setRepos(reposWithoutFavorites);
+        } else {
+          return setRepos(response.data);
+        }
       })
       .catch(() => {
         setIsShowingAlert(true);

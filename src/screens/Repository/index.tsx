@@ -42,9 +42,11 @@ export const Repository = () => {
     owner,
     stargazers_count,
   };
-  const isFavorite = favoritesRepos.some(
-    (item) => item.full_name === full_name
-  );
+
+  const isFavorite =
+    favoritesRepos.length > 0
+      ? favoritesRepos.some((item) => item.full_name === full_name)
+      : false;
 
   const handleRemoveRepoFromFavorites = () => {
     removeRepoFromFavorite(repo);

@@ -111,6 +111,10 @@ export const Card = ({
         <HStack justifyContent={"space-between"}>
           {isFavorite ? (
             <Button
+              _pressed={{
+                bg: "yellow.300",
+                opacity: 0.6,
+              }}
               onPress={handleRemoveRepoFromFavorite}
               bg={"yellow.300"}
               _text={{
@@ -132,6 +136,10 @@ export const Card = ({
             </Button>
           ) : (
             <Button
+              _pressed={{
+                bg: "yellow.300",
+                opacity: 0.6,
+              }}
               onPress={handleAddRepoToFavorite}
               bg={"yellow.300"}
               _text={{

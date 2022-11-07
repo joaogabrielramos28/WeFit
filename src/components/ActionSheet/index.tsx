@@ -86,6 +86,10 @@ export const ActionSheet = () => {
                   Cancelar
                 </Button>
                 <Button
+                  _pressed={{
+                    bg: "blue.500",
+                    opacity: 0.6,
+                  }}
                   isDisabled={shouldBeDisabledButton()}
                   onPress={handleSaveNewUserName}
                   _text={{

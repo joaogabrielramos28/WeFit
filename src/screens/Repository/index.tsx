@@ -145,6 +145,10 @@ export const Repository = () => {
             <Button
               onPress={handleRemoveRepoFromFavorites}
               variant={"outline"}
+              _pressed={{
+                bg: "transparent",
+                opacity: 0.6,
+              }}
               borderWidth={"2px"}
               borderColor={"gray.900"}
               endIcon={
@@ -169,6 +173,10 @@ export const Repository = () => {
             <Button
               onPress={handleAddRepoToFavorites}
               bg={"yellow.500"}
+              _pressed={{
+                bg: "yellow.500",
+                opacity: 0.6,
+              }}
               endIcon={
                 <Icon
                   as={Entypo}
